@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product Management</title>
+    <link rel="stylesheet" type="text/css" href="./assets/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <h1>
+      <div class="container">Product Management</div>
+    </h1>
+    <main>
+      <div class="container">
+        <div class="form-container">
+          <form action="" id="product-form">
+            <input type="text" id="name" name="name" placeholder="Name" />
+            <input
+              type="text"
+              id="description"
+              name="description"
+              placeholder="Short description"
+            />
+            <input type="text" id="brand" name="brand" placeholder="Brand" />
+            <input
+              type="text"
+              id="category"
+              name="category"
+              placeholder="Category"
+            />
+            <input
+              type="text"
+              id="price"
+              name="price"
+              placeholder="List price"
+            />
+            <input type="text" id="cost" name="cost" placeholder="Cost (US$)" />
+            <input
+              type="button"
+              id="btn-create"
+              value="Create"
+              class="btn btn-1"
+            />
+            <input
+              type="button"
+              id="btn-update"
+              value="Update"
+              class="btn btn-1"
+            />
+            <input
+              type="button"
+              id="btn-delete"
+              value="Delete"
+              class="btn btn-2"
+            />
+          </form>
+          <form action="" id="search-form">
+            <input
+              type="text"
+              id="search-name"
+              name="search-name"
+              placeholder="Product Name"
+            />
+            <input
+              type="button"
+              id="btn-search"
+              value="Search"
+              class="btn btn-1"
+            />
+          </form>
+        </div>
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Short Description</th>
+                <th>Brand</th>
+                <th>Category</th>
+                <th>List price</th>
+                <th>Cost (US$)</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+    <script src="./assets/script.js"></script>
+  </body>
+</html>

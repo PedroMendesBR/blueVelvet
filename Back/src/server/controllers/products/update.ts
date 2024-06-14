@@ -59,3 +59,4 @@ export async function updateProduct(req: Request<{}, {}, Partial<IProduct>>, res
         res.status(500).send('Erro interno do servidor');
     }
 }
+    
