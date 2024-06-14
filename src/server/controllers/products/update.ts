@@ -1,15 +1,15 @@
-import { Request, Response } from 'express';
+import { Request, Response, NextFunction } from 'express';
 import { PrismaClient } from '@prisma/client';
 import { IProduct } from '../../types/product';
 import * as yup from 'yup';
 
 const prisma = new PrismaClient();
 
-export const updateValidation = (req: Request, res: Response, next: Function) => {
+export const updateValidation = (req: Request, res: Response, next: NextFunction) => {
     const schema = yup.object().shape({
-        name: yup.string().min(2),
-        shortDescription: yup.string().min(10),
-        brand: yup.string(),
+        name: yup.string().min(2).required(),
+        shortDescription: yup.string().min(10).required(),
+        brand: yup.string().required(),
         category: yup.string(),
         listPrice: yup.number(),
         cost: yup.number(),
@@ -22,19 +22,31 @@ export const updateValidation = (req: Request, res: Response, next: Function) =>
         });
 };
 
-export async function updateProduct(req: Request<{ id: string }, {}, Partial<IProduct>>, res: Response) {
+export async function updateProduct(req: Request<{}, {}, Partial<IProduct>>, res: Response) {
     try {
-        const { id } = req.params;
         const { name, shortDescription, brand, category, listPrice, cost } = req.body;
 
-        const updatedProduct = await prisma.product.update({
+        if (!name || !shortDescription || !brand) {
+            return res.status(400).json({ error: 'Nome, marca e descrição curta são obrigatórios.' });
+        }
+
+        const existingProduct = await prisma.product.findFirst({
             where: {
-                id: parseInt(id, 10),
-            },
-            data: {
                 name,
                 shortDescription,
                 brand,
+            },
+        });
+
+        if (!existingProduct) {
+            return res.status(404).json({ error: 'Produto não encontrado.' });
+        }
+
+        const updatedProduct = await prisma.product.update({
+            where: {
+                id: existingProduct.id,
+            },
+            data: {
                 category,
                 listPrice,
                 cost,

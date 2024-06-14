@@ -2,24 +2,31 @@ import { Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
 import * as yup from 'yup';
 import { Validation } from '../../shared/middleware/Validation';
-import { IProduct } from '../../types/product';
 import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
 export const deleteValidation = Validation((getSchema) => ({
-    params: getSchema<{ id: number }>(yup.object().shape({
-        id: yup.number().required(),
+    body: getSchema<{ name: string, brand: string, shortDescription: string }>(yup.object().shape({
+        name: yup.string().required(),
+        brand: yup.string().required(),
+        shortDescription: yup.string().required(),
     })),
 }));
 
-export async function deleteProduct(req: Request<{ id: string }>, res: Response) {
+export async function deleteProduct(req: Request, res: Response) {
     try {
-        const { id } = req.params;
+        const { name, brand, shortDescription } = req.body;
 
-        const existingProduct = await prisma.product.findUnique({
+        if (!name || !brand || !shortDescription) {
+            return res.status(400).json({ error: 'Nome, marca e descrição curta são obrigatórios.' });
+        }
+
+        const existingProduct = await prisma.product.findFirst({
             where: {
-                id: parseInt(id, 10),
+                name,
+                brand,
+                shortDescription,
             },
         });
 
@@ -29,7 +36,7 @@ export async function deleteProduct(req: Request<{ id: string }>, res: Response)
 
         await prisma.product.delete({
             where: {
-                id: parseInt(id, 10),
+                id: existingProduct.id,
             },
         });
 

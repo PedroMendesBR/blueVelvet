@@ -13,12 +13,12 @@ router.post('/Create',
     ProductsController.create
 );
 
-router.put('/Update/:id',
+router.put('/Update',
     ProductsController.updateValidation,
     ProductsController.updateProduct
 );
 
-router.delete('/Delete/:id',
+router.delete('/Delete',
     ProductsController.deleteValidation,
     ProductsController.deleteProduct
 );
@@ -27,8 +27,9 @@ router.get('/getName/:name',
     ProductsController.getByName
 );
 
-/*router.get('/getAll',
-    ProductsController.getAllProducts
-)*/
+router.get('/getAll',
+    ProductsController.getAllValidation,
+    ProductsController.getAll
+);
 
 export { router };
