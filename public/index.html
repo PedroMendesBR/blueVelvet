@@ -19,43 +19,25 @@
         <main>
             <div class="container">
                 <div class="form-container">
-                    <form action="" id="product-form">
-                        <input
-                            type="text"
-                            id="name"
-                            name="name"
-                            placeholder="Name"
-                        />
+                    <form id="product-form">
+                        <input type="text" id="name" placeholder="Name" />
                         <input
                             type="text"
                             id="description"
-                            name="description"
                             placeholder="Short description"
                         />
-                        <input
-                            type="text"
-                            id="brand"
-                            name="brand"
-                            placeholder="Brand"
-                        />
+                        <input type="text" id="brand" placeholder="Brand" />
                         <input
                             type="text"
                             id="category"
-                            name="category"
                             placeholder="Category"
                         />
                         <input
                             type="text"
                             id="price"
-                            name="price"
                             placeholder="List price"
                         />
-                        <input
-                            type="text"
-                            id="cost"
-                            name="cost"
-                            placeholder="Cost (US$)"
-                        />
+                        <input type="text" id="cost" placeholder="Cost (US$)" />
                         <input
                             type="button"
                             id="btn-create"
@@ -75,11 +57,10 @@
                             class="btn btn-2"
                         />
                     </form>
-                    <form action="" id="search-form">
+                    <form id="search-form">
                         <input
                             type="text"
                             id="search-name"
-                            name="search-name"
                             placeholder="Product Name"
                         />
                         <input
@@ -90,23 +71,8 @@
                         />
                     </form>
                 </div>
-                <div class="table-container">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Short Description</th>
-                                <th>Brand</th>
-                                <th>Category</th>
-                                <th>List price</th>
-                                <th>Cost (US$)</th>
-                            </tr>
-                        </thead>
-                        <tbody></tbody>
-                    </table>
-                </div>
             </div>
         </main>
-        <script src="./js/script.js"></script>
+        <script src="./js/script.js" type="module"></script>
     </body>
 </html>
