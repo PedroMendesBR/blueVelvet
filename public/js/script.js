@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // Base URL of the API
 const api = axios.create({
-    baseURL: "https://api.uglobal.com.br/",
+    baseURL: "https:/localhost:3333/",
     headers: {
         "Content-Type": "application/json",
     }

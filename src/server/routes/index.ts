@@ -1,12 +1,13 @@
 import { Router } from 'express';
 import { StatusCodes } from 'http-status-codes';
 import { ProductsController } from '../controllers';
+import path  from 'path';
 
 const router = Router();
 
-router.get('/', (req, res) => {
-    return res.send('Hi, dev!')
-});
+router.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
+  });
 
 router.post('/Create', 
     ProductsController.createValidation, 
